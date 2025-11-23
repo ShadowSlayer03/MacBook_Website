@@ -64,7 +64,7 @@ Keep it under 500 words and very dev-focused.
     contents: [{ role: "user", parts: [{ text: prompt }] }],
   });
 
-  return response.text();
+  return response.text;
 }
 
 async function main() {

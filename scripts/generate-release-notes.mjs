@@ -58,7 +58,7 @@ Return ONLY markdown.
     contents: [{ role: "user", parts: [{ text: prompt }] }],
   });
 
-  return response.response.text();
+  return response.text;
 }
 
 async function main() {

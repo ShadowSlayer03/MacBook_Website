@@ -96,7 +96,9 @@ Keep it under 400 words.
     contents: [{ role: "user", parts: [{ text: prompt }] }],
   });
 
-  return response.text();
+  console.log("response:",response.text);
+
+  return response.text;
 }
 
 async function main() {
