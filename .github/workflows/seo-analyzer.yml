@@ -1,0 +1,49 @@
+name: AI SEO Analyzer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  seo-analyzer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      # Adjust this to however you start your app in CI (Next, Vite, etc.)
+      - name: Start app
+        run: |
+          npm start &
+          sleep 15
+
+      - name: Run AI SEO Analyzer
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SEO_URL: "http://localhost:3000"
+        run: |
+          node scripts/seo-analyzer.mjs > seo-report.md
+
+      - name: Comment SEO report on PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            🔍 **AI SEO Analyzer Report**
+
+            $(cat seo-report.md)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
