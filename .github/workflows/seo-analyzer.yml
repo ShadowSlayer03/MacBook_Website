@@ -47,4 +47,4 @@ jobs:
           file-path: seo-report.md
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-tag: seo-report
-          mode: update
+          mode: upsert
