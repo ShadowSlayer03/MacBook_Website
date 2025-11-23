@@ -16,6 +16,10 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@google/genai": "^1.30.0",
+    "axe-core": "^4.11.0",
+    "cheerio": "^1.1.2",
+    "playwright": "^1.56.1",
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",

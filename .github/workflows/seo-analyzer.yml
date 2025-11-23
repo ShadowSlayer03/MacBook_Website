@@ -1,0 +1,50 @@
+name: AI SEO Analyzer
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  seo-analyzer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Start Vite preview server
+        run: |
+          nohup npx vite preview --host 0.0.0.0 --strictPort --port 3000 > /dev/null 2>&1 &
+          sleep 25
+
+      - name: Check server health
+        run: curl -I http://localhost:3000
+
+      - name: Run AI SEO Analyzer
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SEO_URL: "http://localhost:3000"
+        run: |
+          node scripts/seo-analyzer.mjs > seo-report.md
+
+      - name: Comment SEO report on PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: seo-report.md
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-tag: seo-report
+          mode: update
