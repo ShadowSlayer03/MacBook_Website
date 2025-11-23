@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 
 const ai = new GoogleGenAI({});
 
