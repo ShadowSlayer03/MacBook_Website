@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const Hero = () => {
     const videoRef = useRef();
@@ -16,7 +16,9 @@ const Hero = () => {
 
             <video ref={videoRef} src="/videos/hero.mp4" autoPlay muted playsInline />
 
-            <button>Buy</button>
+            <button type="button" onClick={() => { console.log("Redirecting to Buy page...") }} aria-label="Buy MacBook Pro">
+                Buy
+            </button>
 
             <p>From $1599 or $133/mo for 12 months</p>
         </section>
