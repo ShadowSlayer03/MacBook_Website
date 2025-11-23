@@ -28,8 +28,11 @@ jobs:
 
       - name: Start Vite preview server
         run: |
-          npx vite preview --host --port 3000 &
-          sleep 20
+          nohup npx vite preview --host 0.0.0.0 --strictPort --port 3000 > /dev/null 2>&1 &
+          sleep 25
+
+      - name: Check server health
+        run: curl -I http://localhost:3000
 
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
