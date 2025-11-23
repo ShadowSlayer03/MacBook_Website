@@ -47,8 +47,5 @@ jobs:
       - name: Comment A11y report on PR
         uses: thollander/actions-comment-pull-request@v3
         with:
-          message: |
-            ♿ **AI Accessibility Audit (Axe + Gemini)**
-
-            $(cat a11y-report.md)
+          file: a11y-report.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

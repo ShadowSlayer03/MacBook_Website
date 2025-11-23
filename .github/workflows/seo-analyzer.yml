@@ -26,11 +26,13 @@ jobs:
       - name: Build app
         run: npm run build
 
-      # Adjust this to however you start your app in CI (Next, Vite, etc.)
-      - name: Start app
+      - name: Start Vite preview server
         run: |
-          npm start &
-          sleep 15
+          nohup npx vite preview --host 0.0.0.0 --strictPort --port 3000 > /dev/null 2>&1 &
+          sleep 25
+
+      - name: Check server health
+        run: curl -I http://localhost:3000
 
       - name: Run AI SEO Analyzer
         env:
