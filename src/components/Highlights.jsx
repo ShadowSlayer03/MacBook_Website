@@ -1,9 +1,9 @@
-import {useMediaQuery} from "react-responsive";
-import {useGSAP} from "@gsap/react";
+import { useMediaQuery } from "react-responsive";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Highlights = () => {
-    const isMobile = useMediaQuery({  query: '(max-width: 1024px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)' });
 
     useGSAP(() => {
         gsap.to(['.left-column', '.right-column'], {
@@ -33,7 +33,7 @@ const Highlights = () => {
                     <div>
                         <img src="/sun.png" alt="Sun" />
                         <p>A stunning <br />
-                            Liquid Retina XDR <br/>
+                            Liquid Retina XDR <br />
                             display.</p>
                     </div>
                 </div>
