@@ -1,5 +1,5 @@
 import React from 'react'
-import navItems from '../constants/navbarConstants'
+import navItems from '../constants/navbar'
 
 const Navbar = () => {
     return (
