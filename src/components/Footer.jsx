@@ -1,4 +1,4 @@
-import { footerLinks } from "../constants/index.js";
+import footerLinks from "../constants/footerLinks.js";
 
 const Footer = () => {
     return (
