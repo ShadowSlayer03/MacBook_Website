@@ -44,8 +44,7 @@ jobs:
       - name: Comment SEO report on PR
         uses: thollander/actions-comment-pull-request@v3
         with:
-          message: |
-            🔍 **AI SEO Analyzer Report**
-
-            $(cat seo-report.md)
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          file-path: seo-report.md
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-tag: seo-report
+          mode: update

@@ -47,5 +47,5 @@ jobs:
       - name: Comment A11y report on PR
         uses: thollander/actions-comment-pull-request@v3
         with:
-          file: a11y-report.md
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          file-path: a11y-report.md
+          github-token: ${{ secrets.GITHUB_TOKEN }}
